@@ -7,11 +7,13 @@ import { ErrorComponent } from '../error/error.component';
 @NgModule({
     imports: [
         RouterModule.forRoot([
-            { path: '', component: HomeComponent },
-            { path: '**', component: ErrorComponent }
-        ])
+            { path: '' , component: HomeComponent},
+            { path: '**' , component: ErrorComponent }
+        ])    
     ],
-    exports:[ RouterModule ]
+    exports: [
+        RouterModule
+    ]
 })
 
-export class AppRoutingModule{}
+export class AppRoutingModule {}
