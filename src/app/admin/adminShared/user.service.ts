@@ -13,17 +13,18 @@ export class UserService implements CanActivate {
     userLoggedIn: boolean = false;
     loggedInUser: string;
     authUser: any;
-
+    
     constructor( private router: Router ) {
-        firebase.initializeApp({
+        var config = {
             apiKey: "AIzaSyAL0fo8cXm2uNN6Ia5ia_A-PVBNhQmhfpE",
             authDomain: "gamingsystem-2833b.firebaseapp.com",
             databaseURL: "https://gamingsystem-2833b.firebaseio.com",
             projectId: "gamingsystem-2833b",
             storageBucket: "gamingsystem-2833b.appspot.com",
             messagingSenderId: "701957518491"
-        })
-    }
+          };
+          firebase.initializeApp(config);
+     }
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean { 
         let url: string = state.url;
@@ -39,36 +40,38 @@ export class UserService implements CanActivate {
 
     register(email: string, password: string){
         firebase.auth().createUserWithEmailAndPassword(email, password)
-        .catch(function(error){
-            alert('${error.message} Please try again!');
+            .catch(function(error) {
+                alert(error.message + `Please Try Again!`);
         });
     }
 
     verifyUser() {
-        this.authUser = firebase.auth().currentUser;
-
-        if(this.authUser)
-        {
-            alert('Welcome ${authUser.email}');
-            this.loggedInUser = this.authUser.email;
-            this.userLoggedIn = true;
-            this.router.navigate['/admin'];
-        }
+        firebase.auth().onAuthStateChanged((user) => {
+            if(user){
+                let authUser = firebase.auth().currentUser;
+                this.loggedInUser = authUser.email;
+                this.userLoggedIn = true;
+                alert(`Welcome ` + authUser.email);
+                authUser = null;
+                this.router.navigate(['/admin']);
+             }
+        });
     }
 
-    login(email: string, password: string){
-        firebase.auth().signInWithEmailAndPassword(email, password)
-        .catch(function(error){
-            alert('${error.message} Unable to Login. Please try again!');
+    login(loginEmail: string, loginPassword: string) {
+        firebase.auth().signInWithEmailAndPassword(loginEmail, loginPassword)
+            .catch(function(error) {
+                alert(error.message + `Unable to login. Try again!`);
         });
     }
 
     logout(){
         this.userLoggedIn = false;
-        firebase.auth().signOut().then(function(){
-            alert('Logged out successfully');
-        }, function(error){
-            alert('${error.message} Unable to Logout. Please try again!');
-        })
+        firebase.auth().signOut().then(() => {
+            alert(`Logged Out!`);
+
+        }, function(error) {
+            alert(error.message + `Unable to logout. Try again!`);
+        });
     }
 }
