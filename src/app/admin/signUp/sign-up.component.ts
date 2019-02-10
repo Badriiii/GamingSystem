@@ -15,20 +15,16 @@ export class SignUpComponent {
   constructor(private userSVC: UserService, private router: Router){}
 
   signUp(){
-    if(this.password.match(this.confirmPassword))
-    {
+    if(this.password !== this.confirmPassword) {
+      this.passwordFail = true;
+    } else {
       this.passwordFail = false;
       this.userSVC.register(this.email, this.password);
       this.userSVC.verifyUser();
     }
-    else
-    {
-      this.passwordFail = true;
-    }
   }
 
-  cancel()
-  {
+  cancel(){
     this.router.navigate(['/admin/login']);
   }
 }
