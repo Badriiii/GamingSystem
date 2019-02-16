@@ -10,6 +10,8 @@ import { SignUpComponent }    from './signUp/sign-up.component';
 import { BlogAdminComponent }    from './blogAdmin/blog-admin.component';
 import { BlogAddComponent} from './blogAdd/blog-add.component';
 
+import { TruncatePipe} from './adminShared/trunc.pipe';
+
 import { UserService } from './adminShared/user.service';
 import { BlogAdminService } from './adminShared/blog-admin.service'
 
@@ -32,7 +34,8 @@ const AdminRoutes: Routes = [
         RouterModule.forChild(AdminRoutes)
     ],
     exports: [
-        RouterModule
+        RouterModule,
+        TruncatePipe
     ],
     declarations: [
         AdminComponent,
@@ -40,7 +43,8 @@ const AdminRoutes: Routes = [
         LoginComponent,
         SignUpComponent,
         BlogAdminComponent,
-        BlogAddComponent
+        BlogAddComponent,
+        TruncatePipe
     ],
     providers: [
         UserService,
