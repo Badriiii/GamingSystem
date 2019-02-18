@@ -16,9 +16,9 @@
 
     <div class="small-12 columns">
       <label>Password
-        <input type="password" placeholder="Enter Password" id="password" 
-            [(ngModel)]="password" name="password" required #pwd="ngModel">
-        <div [hidden]="pwd.valid || pwd.pristine" class="alert callout">
+        <input type="password" placeholder="Enter Password" id="password1" 
+            [(ngModel)]="password1" name="password1" required #pwd1="ngModel">
+        <div [hidden]="pwd1.valid || pwd1.pristine" class="alert callout">
           Password required
         </div>
       </label>
@@ -26,9 +26,9 @@
 
     <div class="small-12  columns">
       <label>Confirm 
-        <input type="password" placeholder="Confirm Password" id="confirmPassword" 
-            [(ngModel)]="confirmPassword" name="confirmPassword" required #confirmPwd="ngModel">
-        <div [hidden]="confirmPwd.valid || confirmPwd.pristine" class="alert callout">
+        <input type="password" placeholder="Confirm Password" id="password2" 
+            [(ngModel)]="password2" name="password2" required #pwd2="ngModel">
+        <div [hidden]="pwd2.valid || pwd2.pristine" class="alert callout">
           Confirm Password
         </div>
       </label>
