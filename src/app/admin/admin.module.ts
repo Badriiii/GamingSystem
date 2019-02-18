@@ -7,13 +7,14 @@ import { AdminComponent } from './adminComponent/admin.component';
 import { AdminMenuComponent }  from './adminMenu/admin-menu.component';
 import { LoginComponent }    from './login/login.component';
 import { SignUpComponent }    from './signUp/sign-up.component';
-import { BlogAdminComponent }    from './blogAdmin/blog-admin.component';
-import { BlogAddComponent} from './blogAdd/blog-add.component';
-
-import { TruncatePipe} from './adminShared/trunc.pipe';
 
 import { UserService } from './adminShared/user.service';
-import { BlogAdminService } from './adminShared/blog-admin.service'
+import { BlogAdminService } from './adminShared/blog-admin.service';
+
+import { BlogAdminComponent }    from './blogAdmin/blog-admin.component';
+import { BlogAddComponent }    from './blogAdd/blog-add.component';
+
+import { TruncatePipe } from './adminShared/trunc.pipe';
 
 const AdminRoutes: Routes = [
     { 

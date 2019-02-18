@@ -8,12 +8,12 @@ import { Router } from '@angular/router';
  })
  
 export class AdminMenuComponent implements OnInit { 
-  currentUser: string;
+  theUser: string;
   
   constructor( private userSVC: UserService, private router: Router ){}
 
   ngOnInit(){
-    this.currentUser = this.userSVC.loggedInUser;
+    this.theUser = this.userSVC.loggedInUser;
   }
 
   logout(){

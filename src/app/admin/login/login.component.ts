@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
 import { UserService } from '../adminShared/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   templateUrl: './login.component.html',
@@ -9,12 +9,12 @@ import { UserService } from '../adminShared/user.service';
  
 export class LoginComponent { 
   email: string;
-  password: string;
+  password1: string;
   
   constructor(private userSVC: UserService, private router: Router){}
 
   login(){
-    this.userSVC.login(this.email, this.password);
+    this.userSVC.login(this.email, this.password1);
     this.userSVC.verifyUser();
   }
 

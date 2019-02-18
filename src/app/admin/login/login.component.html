@@ -14,9 +14,9 @@
     </div>
     <div class="small-12 columns">
       <label>Password
-        <input type="password" placeholder="Enter Password" id="password" 
-            [(ngModel)]="password" name="password" required #pwd="ngModel">
-        <div [hidden]="pwd.valid || pwd.pristine" class="alert callout">
+        <input type="password" placeholder="Enter Password" id="password1" 
+            [(ngModel)]="password1" name="password1" required #pwd1="ngModel">
+        <div [hidden]="pwd1.valid || pwd1.pristine" class="alert callout">
           Password required
         </div>
       </label>
@@ -30,5 +30,5 @@
     <div class="small-12 columns">
       <p (click)="cancel()" class="text-center simlink">Back to the Main Site</p>
     </div>
-</form>
+    </form>
 </div>
