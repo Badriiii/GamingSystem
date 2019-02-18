@@ -16,11 +16,18 @@ import { BlogAddComponent }    from './blogAdd/blog-add.component';
 
 import { TruncatePipe } from './adminShared/trunc.pipe';
 
+import { ProductAdminService } from './adminShared/product-admin.service';
+import { ProductAdminComponent }    from './productAdmin/product-admin.component';
+import { ProductAddComponent }    from './productAdd/product-add.component';
+
+
+
 const AdminRoutes: Routes = [
     { 
         path: 'admin',  
         component: AdminComponent, 
         children: [
+            { path: 'product-admin', component: ProductAdminComponent, canActivate: [UserService] },
             { path: 'blog-admin', component: BlogAdminComponent, canActivate: [UserService] },
             { path: 'login', component: LoginComponent },
             { path: 'signup', component: SignUpComponent },
@@ -45,11 +52,14 @@ const AdminRoutes: Routes = [
         SignUpComponent,
         BlogAdminComponent,
         BlogAddComponent,
-        TruncatePipe
+        TruncatePipe,
+        ProductAdminComponent,
+        ProductAddComponent
     ],
     providers: [
         UserService,
-        BlogAdminService
+        BlogAdminService,
+        ProductAdminService
     ]
 })
 export class AdminModule {}

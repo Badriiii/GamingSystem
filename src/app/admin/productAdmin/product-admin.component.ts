@@ -2,25 +2,25 @@ import { Component, OnInit } from '@angular/core';
 import {UserService} from '../adminShared/user.service';
 import { Router } from '@angular/router';
 import * as firebase from 'firebase';
-import { BlogAdminService } from '../adminShared/blog-admin.service';
-import { Blog } from '../adminShared/blog';
+import { ProductAdminService } from '../adminShared/product-admin.service';
+import { Product } from '../adminShared/product';
 
 @Component({
-  templateUrl: './blog-admin.component.html',
-  styleUrls: ['./blog-admin.component.css']
+  templateUrl: './product-admin.component.html',
+  styleUrls: ['./product-admin.component.css']
 })
 
-export class BlogAdminComponent implements OnInit {
+export class ProductAdminComponent implements OnInit {
     theUser: string;
     menuChoice: string;
-    blogPosts: Blog[];
+    theProducts: Product[];
     formDisplay: boolean = true;
-    singlePost: Blog;
+    singleProduct: Product;
 
     constructor( 
         private userSVC: UserService, 
         private router: Router, 
-        private blogAdminSVC: BlogAdminService 
+        private prodAdminSVC: ProductAdminService
     ){}
 
     logout(){
@@ -34,20 +34,20 @@ export class BlogAdminComponent implements OnInit {
 
     ngOnInit(){
         this.theUser = this.userSVC.loggedInUser;
-        this.getPosts();
+        this.getProducts();
     }
 
-    getPosts(){
-        let dbRef = firebase.database().ref('blogPosts/');
+    getProducts(){
+        let dbRef = firebase.database().ref('products/');
         dbRef.once('value')
             .then((snapshot)=> {
                 let tmp: string[] = snapshot.val();
-                this.blogPosts = Object.keys(tmp).map(key => tmp[key])
+                this.theProducts = Object.keys(tmp).map(key => tmp[key])
             });
     }
 
-    editPost(thePost: Blog){
-        this.singlePost = thePost;
+    editProduct(theProduct: Product){
+        this.singleProduct = theProduct;
         this.formDisplay = false;
     }
 
@@ -55,15 +55,15 @@ export class BlogAdminComponent implements OnInit {
         this.formDisplay = true;
     }
 
-    updatePost(single: Blog){
-        this.blogAdminSVC.editPost(single);
+    updateProduct(singleProd: Product){
+        this.prodAdminSVC.editProduct(singleProd);
         this.formDisplay = true;
     }
 
-    deletePost(single: Blog){
-        let verify = confirm(`Are you sure you want to delete this post?`)
+    deleteProduct(oneProduct: Product){
+        let verify = confirm(`Are you sure you want to delete this product?`)
         if (verify == true) {
-            this.blogAdminSVC.removePost(single);
+            this.prodAdminSVC.removeProduct(oneProduct);
             this.router.navigate(['/admin/']);
         } else {
             alert('Nothing deleted!');
